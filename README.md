@@ -18,7 +18,7 @@
 
 ## 📌 Overview
 
-Linux scheduled-task & persistence auditor (cron, at, systemd timers, rc, udev, ld.so.preload)
+OCronAudit — Scheduled-Task & Persistence Auditor. It provides live-system or offline (--root DIR) collection of every Linux scheduled-execution / persistence point. Built-in demo/self-test paths and severity gates help validate detections without touching production when those flags are used.
 
 ---
 
@@ -30,13 +30,6 @@ Linux scheduled-task & persistence auditor (cron, at, systemd timers, rc, udev, 
 - systemd unit parser — .timer / .service, OnCalendar, OnBootSec, OnUnitActiveSec, ExecStart*, User=, PATH, drop-ins, enablement via *.wants symlinks, user units
 - rc.local, init.d, rc?.d, profile / profile.d, shell rc autoload hooks (bashrc, zshrc, .profile ...)
 - udev RUN+= / PROGRAM= extraction, XDG autostart, /etc/ld.so.preload + ld.so.conf.d review
-- Command resolver — wrappers, sh -c, interpreters, PATH lookup inside the audited root, file metadata
-- 40+ rule engine: pipe-to-shell, encoded payloads, reverse shells, /tmp & /dev/shm exec, hidden paths, writable root targets, PATH hijack, masquerading, miners, anti-forensics, recently modified units ...
-- MITRE ATT&CK mapping (T1053.x, T1543.002, T1037.004, T1546.x, T1574.006, T1547.013) + remediation advice
-- mtime timeline, severity filter, CI gate (--fail-on)
-- Export TXT / Markdown / JSON / CSV / SARIF 2.1.0
-- Self-test (--demo) with synthetic malicious tree
-- Strictly read-only: never modifies or disables jobs
 
 ---
 
@@ -50,7 +43,10 @@ Linux scheduled-task & persistence auditor (cron, at, systemd timers, rc, udev, 
 ## 🚀 Usage
 
 ```bash
-./OCronAudit
+./OCronAudit                                     # interactive menu
+./OCronAudit --scan -r /path/to/root
+./OCronAudit --demo
+./OCronAudit --help
 ```
 
 ---
